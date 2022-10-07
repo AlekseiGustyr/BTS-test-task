@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,10 +18,10 @@ import java.util.List;
 @Setter
 @Getter
 @NoArgsConstructor
-public class Resume {
+public class Resume implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
+    @Column(name = "id")
     private Long id;
 
 @Column(name = "name")
@@ -40,6 +41,9 @@ public class Resume {
 
     @Column(name = "summary")
     private String summary; // Рассказ о себе
+
+    @Column(name = "status")
+    private String status; // статус резюме
 
     @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     @JoinTable(

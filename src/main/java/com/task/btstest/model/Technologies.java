@@ -1,17 +1,16 @@
 package com.task.btstest.model;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "technologies")
 @Getter
 @Setter
-@NoArgsConstructor
-public class Technologies {
+@AllArgsConstructor
+public class Technologies implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,4 +19,8 @@ public class Technologies {
 
     @Column(name = "technology")
     private String technology;
+
+    public Technologies() {
+
+    }
 }

@@ -6,7 +6,7 @@
 </head>
 <body>
 <h1>Заполните анкету ниже</h1>
-<form action="#" th:action="@{/resume}" th:object="${resume}" method="post">
+<form action="#" th:action="@{/resumes}" th:object="${resumeDto}" method="post">
     <p>ФИО: <input type="text" th:field="*{name}"></p>
     <p>Предыдущее место работы: <input type="text" th:field="*{previousJob}"></p>
     <p>Желаемая должность: <input type="text" th:field="*{position}"></p>
@@ -18,7 +18,14 @@
         </select>
     </p>
     <p>Желаемый уровень заработной платы(BYN): <input type="text" th:field="*{salary}"></p>
-    <p>Технологии: </p>
+    <p><label>Технологии:
+        <input type="checkbox" name="technologies"
+               th:each="technology : ${technologies}"
+               th:text="${technology.technology}"
+               th:value="${technology.id}"
+               th:field="*{technologyStack}"
+        />
+    </label></p>
     <p>О себе: <input type="text" th:field="*{summary}"></p>
     <button type="reset">Очистить</button>
     <button type="submit">Отправить резюме</button>
