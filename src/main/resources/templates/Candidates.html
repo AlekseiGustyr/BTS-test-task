@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Candidates list</title>
+    <link rel="stylesheet" href="/Candidates.css">
+</head>
+<body>
+<table>
+    <thead>
+    <tr>
+        <th>ФИО</th>
+        <th>предыдущее место работы</th>
+        <th>желаемая должность</th>
+        <th>уровень навыков</th>
+        <th>желаемая зарплата</th>
+        <th>Технологии</th>
+        <th>О себе</th>
+        <th>Категория</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="resume, iState : ${resumes}">
+        <td><a href="Single_resume.html"
+               th:href="@{/resumes/{resumeId}(resumeId=${resume.getId()})}"
+               th:text="${resume.name}"></a></td>
+        <td th:text="${resume.previousJob}"></td>
+        <td th:text="${resume.position}"></td>
+        <td th:text="${resume.techLevel}"></td>
+        <td th:text="${resume.salary}"></td>
+        <td>
+            <span th:each="technologies, index : ${resume.getTechnologyStack()}"
+                  th:text="' ' + ${technologies.getTechnology()} + ','"> , </span>
+        </td>
+        <td th:text="${resume.summary}"></td>
+        <td th:text="${resume.status}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
