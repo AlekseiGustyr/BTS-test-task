@@ -21,12 +21,14 @@
     </thead>
     <tbody>
     <tr th:each="resume, iState : ${resumes}">
-        <td th:text="${resume.name}"></td>
+        <td><a href="Single_resume.html"
+               th:href="@{/resumes/{resumeId}(resumeId=${resume.getId()})}"
+               th:text="${resume.name}"></a></td>
         <td th:text="${resume.previousJob}"></td>
         <td th:text="${resume.position}"></td>
         <td th:text="${resume.techLevel}"></td>
         <td th:text="${resume.salary}"></td>
-        <td >
+        <td>
             <span th:each="technologies, index : ${resume.getTechnologyStack()}"
                   th:text="' ' + ${technologies.getTechnology()} + ','"> , </span>
         </td>

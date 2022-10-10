@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Candidates list</title>
+  <link rel="stylesheet" href="/Candidates.css">
+</head>
+<body>
+<table>
+  <thead>
+  <tr>
+    <th>ФИО</th>
+    <th>предыдущее место работы</th>
+    <th>желаемая должность</th>
+    <th>уровень навыков</th>
+    <th>желаемая зарплата</th>
+    <th>Технологии</th>
+    <th>О себе</th>
+    <th>Категория</th>
+    <th>Решение</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="resume, iState : ${resume}">
+    <td th:text="${resume.name}"></td>
+    <td th:text="${resume.previousJob}"></td>
+    <td th:text="${resume.position}"></td>
+    <td th:text="${resume.techLevel}"></td>
+    <td th:text="${resume.salary}"></td>
+    <td >
+            <span th:each="technologies, index : ${resume.getTechnologyStack()}"
+                  th:text="' ' + ${technologies.getTechnology()} + ','"> , </span>
+    </td>
+    <td th:text="${resume.summary}"></td>
+    <td th:text="${resume.status}"></td>
+    <td th:text="${resume.decision} ?: Отсутствует"></td>
+  </tr>
+  </tbody>
+</table>
+<h4>
+  Примите (измените) решение по кандидату:
+</h4>
+<form action="#" th:action="@{/resumes/{resumeId}(resumeId=${resume.getId()})}" th:object="${resume}" method="post">
+  <label>
+    <input type="radio" name="decision" value="Принять на работу" th:field="${resume.decision}">
+    Принять на работу
+  </label>
+  <br/>
+  <label>
+    <input type="radio" name="decision" value="Отправить тестовое задание" th:field="${resume.decision}">
+    Отправить тестовое задание
+  </label>
+  <br/>
+  <label>
+    <input type="radio" name="decision" value="Дополнительное собеседование" th:field="${resume.decision}">
+    Дополнительное собеседование
+  </label>
+  <br/>
+  <label>
+    <input type="radio" name="decision" value="Отказать кандидату" th:field="${resume.decision}">
+    Отказать кандидату
+  </label>
+  <br/>
+  <input type="submit" value="Сохранить решение">
+</form>
+</body>
+</html>

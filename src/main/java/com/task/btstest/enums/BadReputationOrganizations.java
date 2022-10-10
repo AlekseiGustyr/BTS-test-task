@@ -3,9 +3,7 @@ package com.task.btstest.enums;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
-/**
- * Организации с плохой репутацией
- */
+// Список организаций с плохой репутацией
 @Getter
 @RequiredArgsConstructor
 public enum BadReputationOrganizations {

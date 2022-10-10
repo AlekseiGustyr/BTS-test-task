@@ -3,9 +3,7 @@ package com.task.btstest.enums;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
-/**
- * ФИО кандидатов с плохой репутацией
- */
+//Список кандидатов с плохой репутацией
 @Getter
 @RequiredArgsConstructor
 public enum BadReputationCandidates {

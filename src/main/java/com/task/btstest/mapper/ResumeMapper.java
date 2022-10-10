@@ -6,12 +6,13 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+// Маппера объектов из Dto Обхектов и обратно
 @Component
 public interface ResumeMapper {
 
-    Resume toResume (ResumeDto resumeDto);
+    Resume toResume(ResumeDto resumeDto);
 
-    ResumeDto toDto (Resume resume);
+    ResumeDto toDto(Resume resume);
 
-    public List<ResumeDto> toResumeList (List<Resume> resumes);
+    List<ResumeDto> toResumeList(List<Resume> resumes);
 }
